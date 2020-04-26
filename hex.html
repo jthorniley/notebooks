@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 
 <html>
@@ -17,22 +18,22 @@
   <meta name="lang:search.tokenizer" content="[\s\-]+">
 
   
-    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+<link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&family=Fira+Sans:ital,wght@0,300;1,300&display=swap"
+    rel="stylesheet">
+<style>
+    body,
+    input {
+        font-family: "Fira Sans", sans-serif !important
+    }
 
-    <style>
-      body,
-      input {
-        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
-      }
-
-      code,
-      kbd,
-      pre {
-        font-family: "Roboto Mono", "Courier New", Courier, monospace
-      }
-    </style>
-  
+    code,
+    kbd,
+    pre {
+        font-family: "Fira Code", monospace !important
+    }
+</style>
 
   <link rel="stylesheet" href="_static/stylesheets/application.css"/>
   <link rel="stylesheet" href="_static/stylesheets/application-palette.css"/>
@@ -194,6 +195,8 @@
         <li class="md-nav__item"><a href="#addressing-the-rectangular-grid" class="md-nav__link">Addressing the rectangular grid</a>
         </li>
         <li class="md-nav__item"><a href="#finding-the-hexagon-address-for-a-cartesian-coordinate" class="md-nav__link">Finding the hexagon address for a cartesian coordinate</a>
+        </li>
+        <li class="md-nav__item"><a href="#references" class="md-nav__link">References</a>
         </li></ul>
             </nav>
         </li>
@@ -217,6 +220,11 @@
     <li class="md-nav__item">
     
       <a href="#finding-the-hexagon-address-for-a-cartesian-coordinate" class="md-nav__link">Finding the hexagon address for a cartesian coordinate</a>
+      
+    </li>
+    <li class="md-nav__item">
+    
+      <a href="#references" class="md-nav__link">References</a>
       
     </li></ul>
     </li>
@@ -243,6 +251,8 @@
         <li class="md-nav__item"><a href="#addressing-the-rectangular-grid" class="md-nav__link">Addressing the rectangular grid</a>
         </li>
         <li class="md-nav__item"><a href="#finding-the-hexagon-address-for-a-cartesian-coordinate" class="md-nav__link">Finding the hexagon address for a cartesian coordinate</a>
+        </li>
+        <li class="md-nav__item"><a href="#references" class="md-nav__link">References</a>
         </li></ul>
             </nav>
         </li>
@@ -260,28 +270,29 @@
 <p>Define a tessellating hexagonal grid as a set of hexagons
 <span class="math notranslate nohighlight">\(\mathcal{H}\)</span> which covers the cartesian plane
 <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span>. Each hexagon <span class="math notranslate nohighlight">\(h_{i,j} \in \mathcal{H}\)</span> has
-an integer address <span class="math notranslate nohighlight">\(\{i, j\} \in \mathbb{Z}^2\)</span>. The hexagons do
+an integer <em>address</em> <span class="math notranslate nohighlight">\(\{i, j\} \in \mathbb{Z}^2\)</span>. The hexagons do
 not overlap so the intersection of any two distinct <span class="math notranslate nohighlight">\(h\)</span> is empty,
 and the cartesian space is covered such that any coordinate
 <span class="math notranslate nohighlight">\(\{x, y\} \in \mathbb{R}^2\)</span> belongs to some <span class="math notranslate nohighlight">\(h_{i,j}\)</span>.</p>
 <p>We can therefore define the grid with a function
 <span class="math notranslate nohighlight">\(f : \mathbb{R}^2 \rightarrow \mathbb{Z}^2\)</span> that maps coordinates
 in cartesian space to the corresponding hexagon address. This function
-is useful in the context of a computer interaction where a user selects
-a pixel location on a rendering of the hexagonal grid, and we which to
-find the corresponding grid coordinates.</p>
+is useful for example in the context of a computer interaction where a
+user selects a pixel location on a rendering of the hexagonal grid, and
+we which to find the corresponding grid address.</p>
 <p>Without loss of generality, assume that the hex grid is “flat topped” as
 defined in <a class="reference external" href="https://www.redblobgames.com/grids/hexagons/">1</a>, and the
-hexagonal grid coordinates are “Axial Coordinates” as defined in
+hexagonal grid addresses are “Axial Coordinates” as defined in
 <a class="reference external" href="https://www.redblobgames.com/grids/hexagons/">1</a>.</p>
 
 <h2 id="hexagon-geometry">Hexagon geometry<a class="headerlink" href="#hexagon-geometry" title="Permalink to this headline">¶</a></h2>
-<p>We need to determine the shape of each hexagon. Clearly for the obvious
-tessellation we need each hexagon to be the same size, however they do
-not need to be regular, as any simple scaling of the coordinates could
-easily be inverted to get regular hexagons if that was so desired. A
-regular hexagon with side 1 has a height of <span class="math notranslate nohighlight">\(\sqrt{3}\)</span> so it is in
-fact more convenient to choose a non-regular geometry.</p>
+<p>We need to determine the shape of each hexagon. Clearly the tessellation
+will be straightforward so long as each hexagon on the grid is identical
+- but they do not need to be regular, as any simple scaling of the
+coordinates could easily be inverted to get regular hexagons if that was
+so desired. A regular hexagon with side 1 has a height of
+<span class="math notranslate nohighlight">\(\sqrt{3}\)</span> so it is in fact more convenient to choose a
+non-regular geometry.</p>
 <p>Define the hexagon shape so that the distances between hexagons are
 small whole numbers: a small section of the tessellation is shown below
 - the vertical space between adjacent hexagons in the same “column”
@@ -301,7 +312,8 @@ hexagon in the next column is 1. The horizontal space (<span class="math notrans
     <span class="p">])</span>
 </pre></div>
 </div>
-<img alt="_images/hex_4_0.svg" src="_images/hex_4_0.svg"/>
+<img alt="_images/hex_4_0.png" src="_images/hex_4_0.png"/>
+
 
 <h2 id="colouring-the-hexagons">Colouring the hexagons<a class="headerlink" href="#colouring-the-hexagons" title="Permalink to this headline">¶</a></h2>
 <p>As noted at the start, each hexagon has an address <span class="math notranslate nohighlight">\(\{i, j\}\)</span>. In
@@ -338,42 +350,50 @@ SHA-256 hash function.</p>
 <h2 id="addressing-the-rectangular-grid">Addressing the rectangular grid<a class="headerlink" href="#addressing-the-rectangular-grid" title="Permalink to this headline">¶</a></h2>
 <p>The addresses for the hexagons have to components <span class="math notranslate nohighlight">\(i\)</span> and
 <span class="math notranslate nohighlight">\(j\)</span>. The first addresses the column (so increases along the
-<span class="math notranslate nohighlight">\(x\)</span> direction). As we move up a column, the <span class="math notranslate nohighlight">\(j\)</span> component
-increases, but has an offset which ensures that for any given tile, a
-move in one of the six available directions always has the same change
-in <span class="math notranslate nohighlight">\(\{i, j\}\)</span> (for example, moving to the tile up and to the right
-of any <span class="math notranslate nohighlight">\(\{i, j\}\)</span>, always moves to address <span class="math notranslate nohighlight">\(\{i+1, j+1\}\)</span>).</p>
-<p>Given the <span class="math notranslate nohighlight">\(\{i, j\}\)</span> coordinates of a hexagon, we can find the
-origin of the hexagon in the cartesian plane. We have established that
-the horizontal spacing between hexagons is 1, so the <span class="math notranslate nohighlight">\(x\)</span>
-coordinate is simply <span class="math notranslate nohighlight">\(i\)</span>.</p>
-<p>The vertical spacing is 2, so we expect a factor of <span class="math notranslate nohighlight">\(2j\)</span> in the
-<span class="math notranslate nohighlight">\(y\)</span> value. To acheive the correct offset, we need to subtract
-<span class="math notranslate nohighlight">\(i\)</span> to move the hexagon down by one for each column.</p>
+<span class="math notranslate nohighlight">\(x\)</span> direction). The <span class="math notranslate nohighlight">\(j\)</span> component increases along the
+<span class="math notranslate nohighlight">\(y\)</span> direction but is offset down by 1 for each column index to
+create a useful invariance: when moving in one of the six directions
+across the edge of one hexagon to an adjacent one, the index changes in
+the same way irrespective of the starting index. I.e. we can define six
+movement operations:</p>
+<p><span class="math notranslate nohighlight">\(\uparrow(i, j) = (i, j+1)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\downarrow(i, j) = (i, j-1)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\nearrow(i, j) = (i+1, j+1)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\swarrow(i, j) = (i-1, j-1)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\nwarrow(i, j) = (i-1, j)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\searrow(i, j) = (i+1, j)\)</span></p>
+<p>Given that we know how the address change across the grid, and choosing
+sensible starting point (e.g. that address <span class="math notranslate nohighlight">\(\{0, 0\}\)</span> corresponds
+to the origin of the cartesian plane), we can find a location for each
+hexagon based on its address with the following function.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">axial_to_world</span><span class="p">(</span><span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
 </pre></div>
 </div>
-<p>Plotting our hexagon geometry on this grid, and using the random colours
-to fill them in:</p>
-<img alt="_images/hex_10_0.svg" src="_images/hex_10_0.svg"/>
+<p>To see how this works, we iterate over a rectangular set of hexagon
+addresses, and draw a hexagon on the cartesian plane using the geometry
+and “random” colour scheme defined above.</p>
+<img alt="_images/hex_10_0.png" src="_images/hex_10_0.png"/>
+
 
 <h2 id="finding-the-hexagon-address-for-a-cartesian-coordinate">Finding the hexagon address for a cartesian coordinate<a class="headerlink" href="#finding-the-hexagon-address-for-a-cartesian-coordinate" title="Permalink to this headline">¶</a></h2>
-<p>The function <code class="docutils literal notranslate"><span class="pre">axial_to_world</span></code> finds the ‘origin’ coordinates of a
+<p>The function <code class="docutils literal notranslate"><span class="pre">axial_to_world</span></code> finds the “origin” coordinates of a
 hexagon, given its address - we then draw a polygon relative to this to
 obtain the hexagons on the above image. The hexagon produced by this
 process is effectively the preimage of the hexagon index in the funtion
 <span class="math notranslate nohighlight">\(f\)</span> that we wish to find.</p>
 <p>Therefore, we can start forming <span class="math notranslate nohighlight">\(f\)</span> by inverting the calculation
-in <code class="docutils literal notranslate"><span class="pre">axial_to_world</span></code>. Note that the mapping is not continuous since the
-axial coordinates have to be integers, whereas the “world” coordinates
-are real-valued.</p>
+in <code class="docutils literal notranslate"><span class="pre">axial_to_world</span></code>. Of course the inverse is only properly defined
+for coordinate pairs that sit on one of the hex origins - for other
+values, perform the inverse calculation anyway and keep only the
+integral part by taking the floor.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">axial_to_world_inverse</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-    <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">((</span><span class="n">y</span><span class="o">+</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+
+    <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">v</span><span class="p">)),</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
 
 <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="mi">33</span><span class="p">)</span>
 <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">axial_to_world</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
@@ -387,6 +407,30 @@ are real-valued.</p>
 <span class="n">axial_to_world_inverse</span><span class="p">(</span><span class="mf">23.4</span><span class="p">,</span> <span class="mf">43.1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="mi">33</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>We now have a map from the real space to the hexagon coordinates, but it
+only finds the coordinates at the “origin” of the hexagon, and otherwise
+rounds down. For example, for the hexagon shown in blue below, the
+inverse function will identify all of the points in the pink square with
+the address of this hexagon.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">hex_points</span><span class="p">()</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">'#ffaaaa99'</span><span class="p">)</span>
+<span class="kc">None</span>
+</pre></div>
+</div>
+<img alt="_images/hex_14_0.png" src="_images/hex_14_0.png"/>
+<p>The intersection of the pink square and blue hexagon is already
+correctly identified by the inverse. The four corners of the square need
+to be mapped to adjacent hexagons instead.</p>
+<p>Fortunately, we can use a property of the axial address already
+mentioned: moving in a particular direction (across an edge to an
+adjacent hexagon) always changes the axial address in the same way
+irrespective of where the starting hexagon is - i.e. we can use the
+<span class="math notranslate nohighlight">\(\nearrow\)</span>, <span class="math notranslate nohighlight">\(\searrow\)</span> etc operations to move to the correct
+address if we are in one of the corners of the pink box.</p>
+<p>If we rescale the y axis by <span class="math notranslate nohighlight">\(1/2\)</span> the pink box will become a
+square and it is trivial to find if we are in one of the corners that
+lies outside the hexgon and determine the correct move operation:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">world_to_axial</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
     <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
     <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">((</span><span class="n">y</span><span class="o">+</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
@@ -407,7 +451,40 @@ are real-valued.</p>
         <span class="k">return</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
 </pre></div>
 </div>
-<img alt="_images/hex_14_0.svg" src="_images/hex_14_0.svg"/>
+<p>To demonstrate this function, construct an image by iterating over the
+coordinate space and finding the axial address for each real valued
+location. If we color in the image according to the same colour scheme
+we used before, we can compare the generated image to the plot of the
+hexagon grid to confirm that it works.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">7.5</span><span class="p">,</span><span class="mi">600</span><span class="p">)</span>
+<span class="n">y_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">14.5</span><span class="p">,</span><span class="mi">600</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">generate_image</span><span class="p">():</span>
+    <span class="n">img_rgba</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">y_values</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_values</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">y_values</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x_values</span><span class="p">):</span>
+            <span class="n">img_rgba</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">color_for_hex</span><span class="p">(</span><span class="o">*</span><span class="n">world_to_axial</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">img_rgba</span>
+
+<span class="k">def</span> <span class="nf">image_subplot</span><span class="p">(</span><span class="n">axes</span><span class="p">):</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">generate_image</span><span class="p">(),</span>
+                <span class="n">origin</span><span class="o">=</span><span class="s1">'lower'</span><span class="p">,</span>
+                <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">x_values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">y_values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y_values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">aspect</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Coordinates -&gt; Hexagon address'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mf">5.5</span><span class="p">))</span>
+<span class="n">image_subplot</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">hex_grid_subplot</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<img alt="_images/hex_18_0.png" src="_images/hex_18_0.png"/>
+
+
+<h2 id="references">References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>There are comprehensive details on hexagonal grids here:
+<a class="reference external" href="https://www.redblobgames.com/grids/hexagons/">https://www.redblobgames.com/grids/hexagons/</a></p>
+
 
 
 
