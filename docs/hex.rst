@@ -39,7 +39,7 @@ hexagon in the next column is 1. The horizontal space (:math:`w`) is 1.
 
 
 
-.. image:: hex_files/hex_3_0.png
+.. image:: hex_files/hex_3_0.svg
 
 
 Colouring the hexagons
@@ -101,22 +101,57 @@ The vertical spacing is 2, so we expect a factor of :math:`2j` in the
 
 .. code:: ipython3
 
-    def axial_to_world(i, j):
+    def axial_to_world(i: int, j: int) -> (float, float):
         x = np.float(i)
         y = np.float(2*j - i)
-        return x,y
+        return x, y
 
 Plotting our hexagon geometry on this grid, and using the random colours
 to fill them in:
 
 
 
-.. image:: hex_files/hex_9_0.png
+.. image:: hex_files/hex_9_0.svg
+
+
+Finding the hexagon address for a cartesian coordinate
+------------------------------------------------------
+
+The function ``axial_to_world`` finds the ‘origin’ coordinates of a
+hexagon, given its address - we then draw a polygon relative to this to
+obtain the hexagons on the above image. The hexagon produced by this
+process is effectively the preimage of the hexagon index in the funtion
+:math:`f` that we wish to find.
+
+Therefore, we can start forming :math:`f` by inverting the calculation
+in ``axial_to_world``. Note that the mapping is not continuous since the
+axial coordinates have to be integers, whereas the “world” coordinates
+are real-valued.
+
+.. code:: ipython3
+
+    def axial_to_world_inverse(x: float, y: float) -> (int, int):
+        i = np.int(np.floor(x))
+        j = np.int(np.floor((y+i)/2))
+        return i, j
+    
+    i, j = (23, 33)
+    x, y = axial_to_world(i, j)
+    print(f'axial_to_world{i, j} -> {x, y}')
+    x, y = (23.4, 43.1)
+    i, j = axial_to_world_inverse(x, y)
+    print(f'axial_to_world_inverse{x, y} -> {i, j}')
+
+
+.. parsed-literal::
+
+    axial_to_world(23, 33) -> (23.0, 43.0)
+    axial_to_world_inverse(23.4, 43.1) -> (23, 33)
 
 
 .. code:: ipython3
 
-    def world_to_axial(x, y):
+    def world_to_axial(x: float, y: float) -> (int, int):
         i = np.int(np.floor(x))
         j = np.int(np.floor((y+i)/2))
         
@@ -139,5 +174,5 @@ to fill them in:
 
 
 
-.. image:: hex_files/hex_11_0.png
+.. image:: hex_files/hex_13_0.svg
 

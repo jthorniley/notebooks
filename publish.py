@@ -36,6 +36,7 @@ def main():
     print(f'Building in {tmp_dir.name}')
     exec(f'git clone git@github.com:jthorniley/notebooks.git .', tmp_dir.name)
     exec(f'git checkout gh-pages', tmp_dir.name)
+    exec(f'git rm *', tmp_dir.name)
     shutil.copytree(docs_path() / '_build' / 'html',
                     tmp_dir.name,
                     dirs_exist_ok=True)
