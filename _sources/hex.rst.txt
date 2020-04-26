@@ -101,10 +101,10 @@ The vertical spacing is 2, so we expect a factor of :math:`2j` in the
 
 .. code:: ipython3
 
-    def axial_to_world(i, j):
+    def axial_to_world(i: int, j: int) -> (float, float):
         x = np.float(i)
         y = np.float(2*j - i)
-        return x,y
+        return x, y
 
 Plotting our hexagon geometry on this grid, and using the random colours
 to fill them in:
@@ -130,11 +130,6 @@ are real-valued.
 
 .. code:: ipython3
 
-    def axial_to_world(i: int, j: int) -> (float, float):
-        x = np.float(i)
-        y = np.float(2*j - i)
-        return x, y
-    
     def axial_to_world_inverse(x: float, y: float) -> (int, int):
         i = np.int(np.floor(x))
         j = np.int(np.floor((y+i)/2))
