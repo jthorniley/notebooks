@@ -1,7 +1,9 @@
 James's Notebooks
 =================
 
-A collection of notes.
+A website for my notes.
+
+`Source code for this site <https://www.github.com/jthorniley/notebooks>`_.
 
 .. toctree::
     :hidden:
