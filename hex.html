@@ -192,6 +192,8 @@
         <li class="md-nav__item"><a href="#colouring-the-hexagons" class="md-nav__link">Colouring the hexagons</a>
         </li>
         <li class="md-nav__item"><a href="#addressing-the-rectangular-grid" class="md-nav__link">Addressing the rectangular grid</a>
+        </li>
+        <li class="md-nav__item"><a href="#finding-the-hexagon-address-for-a-cartesian-coordinate" class="md-nav__link">Finding the hexagon address for a cartesian coordinate</a>
         </li></ul>
             </nav>
         </li>
@@ -210,6 +212,11 @@
     <li class="md-nav__item">
     
       <a href="#addressing-the-rectangular-grid" class="md-nav__link">Addressing the rectangular grid</a>
+      
+    </li>
+    <li class="md-nav__item">
+    
+      <a href="#finding-the-hexagon-address-for-a-cartesian-coordinate" class="md-nav__link">Finding the hexagon address for a cartesian coordinate</a>
       
     </li></ul>
     </li>
@@ -234,6 +241,8 @@
         <li class="md-nav__item"><a href="#colouring-the-hexagons" class="md-nav__link">Colouring the hexagons</a>
         </li>
         <li class="md-nav__item"><a href="#addressing-the-rectangular-grid" class="md-nav__link">Addressing the rectangular grid</a>
+        </li>
+        <li class="md-nav__item"><a href="#finding-the-hexagon-address-for-a-cartesian-coordinate" class="md-nav__link">Finding the hexagon address for a cartesian coordinate</a>
         </li></ul>
             </nav>
         </li>
@@ -278,8 +287,7 @@ small whole numbers: a small section of the tessellation is shown below
 - the vertical space between adjacent hexagons in the same “column”
 (labelled <span class="math notranslate nohighlight">\(h\)</span>) is 2, and the vertical space relative to the
 hexagon in the next column is 1. The horizontal space (<span class="math notranslate nohighlight">\(w\)</span>) is 1.</p>
-<img alt="_images/hex_3_0.png" src="_images/hex_3_0.png"/>
-
+<img alt="_images/hex_3_0.svg" src="_images/hex_3_0.svg"/>
 
 <h2 id="colouring-the-hexagons">Colouring the hexagons<a class="headerlink" href="#colouring-the-hexagons" title="Permalink to this headline">¶</a></h2>
 <p>As noted at the start, each hexagon has an address <span class="math notranslate nohighlight">\(\{i, j\}\)</span>. In
@@ -336,8 +344,41 @@ coordinate is simply <span class="math notranslate nohighlight">\(i\)</span>.</p
 </div>
 <p>Plotting our hexagon geometry on this grid, and using the random colours
 to fill them in:</p>
-<img alt="_images/hex_9_0.png" src="_images/hex_9_0.png"/>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">world_to_axial</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<img alt="_images/hex_9_0.svg" src="_images/hex_9_0.svg"/>
+
+<h2 id="finding-the-hexagon-address-for-a-cartesian-coordinate">Finding the hexagon address for a cartesian coordinate<a class="headerlink" href="#finding-the-hexagon-address-for-a-cartesian-coordinate" title="Permalink to this headline">¶</a></h2>
+<p>The function <code class="docutils literal notranslate"><span class="pre">axial_to_world</span></code> finds the ‘origin’ coordinates of a
+hexagon, given its address - we then draw a polygon relative to this to
+obtain the hexagons on the above image. The hexagon produced by this
+process is effectively the preimage of the hexagon index in the funtion
+<span class="math notranslate nohighlight">\(f\)</span> that we wish to find.</p>
+<p>Therefore, we can start forming <span class="math notranslate nohighlight">\(f\)</span> by inverting the calculation
+in <code class="docutils literal notranslate"><span class="pre">axial_to_world</span></code>. Note that the mapping is not continuous since the
+axial coordinates have to be integers, whereas the “world” coordinates
+are real-valued.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">axial_to_world</span><span class="p">(</span><span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+
+<span class="k">def</span> <span class="nf">axial_to_world_inverse</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">((</span><span class="n">y</span><span class="o">+</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
+
+<span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="mi">33</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">axial_to_world</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'axial_to_world</span><span class="si">{</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="si">}</span><span class="s1"> -&gt; </span><span class="si">{</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="mf">23.4</span><span class="p">,</span> <span class="mf">43.1</span><span class="p">)</span>
+<span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">axial_to_world_inverse</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'axial_to_world_inverse</span><span class="si">{</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="si">}</span><span class="s1"> -&gt; </span><span class="si">{</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">axial_to_world</span><span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="mi">33</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="mf">23.0</span><span class="p">,</span> <span class="mf">43.0</span><span class="p">)</span>
+<span class="n">axial_to_world_inverse</span><span class="p">(</span><span class="mf">23.4</span><span class="p">,</span> <span class="mf">43.1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="mi">33</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">world_to_axial</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
     <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
     <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">((</span><span class="n">y</span><span class="o">+</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
 
@@ -357,8 +398,7 @@ to fill them in:</p>
         <span class="k">return</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
 </pre></div>
 </div>
-<img alt="_images/hex_11_0.png" src="_images/hex_11_0.png"/>
-
+<img alt="_images/hex_13_0.svg" src="_images/hex_13_0.svg"/>
 
 
 
