@@ -279,5 +279,9 @@ hexagon grid to confirm that it works.
 References
 ----------
 
-There are comprehensive details on hexagonal grids here:
-https://www.redblobgames.com/grids/hexagons/
+`Red Blob Games hexagon
+page <https://www.redblobgames.com/grids/hexagons/>`__
+
+`Jupyter notebook source of this
+page <https://github.com/jthorniley/notebooks/blob/master/Hex%20Coordinates.ipynb>`__
+
