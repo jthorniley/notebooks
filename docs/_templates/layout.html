@@ -1,0 +1,21 @@
+{# Import the theme's layout. #}
+{% extends '!layout.html' %}
+
+{%- block font %}
+<link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&family=Fira+Sans:ital,wght@0,300;1,300&display=swap"
+    rel="stylesheet">
+<style>
+    body,
+    input {
+        font-family: "Fira Sans", sans-serif !important
+    }
+
+    code,
+    kbd,
+    pre {
+        font-family: "Fira Code", monospace !important
+    }
+</style>
+{%- endblock %}
