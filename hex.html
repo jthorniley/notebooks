@@ -201,32 +201,7 @@
             </nav>
         </li>
   </ul>
-</nav><ul class="md-nav__list"> 
-    <li class="md-nav__item">
-    
-      <a href="#hexagon-geometry" class="md-nav__link">Hexagon geometry</a>
-      
-    </li>
-    <li class="md-nav__item">
-    
-      <a href="#colouring-the-hexagons" class="md-nav__link">Colouring the hexagons</a>
-      
-    </li>
-    <li class="md-nav__item">
-    
-      <a href="#addressing-the-rectangular-grid" class="md-nav__link">Addressing the rectangular grid</a>
-      
-    </li>
-    <li class="md-nav__item">
-    
-      <a href="#finding-the-hexagon-address-for-a-cartesian-coordinate" class="md-nav__link">Finding the hexagon address for a cartesian coordinate</a>
-      
-    </li>
-    <li class="md-nav__item">
-    
-      <a href="#references" class="md-nav__link">References</a>
-      
-    </li></ul>
+</nav>
     </li>
   </ul>
   
@@ -312,8 +287,7 @@ hexagon in the next column is 1. The horizontal space (<span class="math notrans
     <span class="p">])</span>
 </pre></div>
 </div>
-<img alt="_images/hex_4_0.png" src="_images/hex_4_0.png"/>
-
+<img alt="_images/hex_4_0.svg" src="_images/hex_4_0.svg"/>
 
 <h2 id="colouring-the-hexagons">Colouring the hexagons<a class="headerlink" href="#colouring-the-hexagons" title="Permalink to this headline">¶</a></h2>
 <p>As noted at the start, each hexagon has an address <span class="math notranslate nohighlight">\(\{i, j\}\)</span>. In
@@ -375,8 +349,7 @@ hexagon based on its address with the following function.</p>
 <p>To see how this works, we iterate over a rectangular set of hexagon
 addresses, and draw a hexagon on the cartesian plane using the geometry
 and “random” colour scheme defined above.</p>
-<img alt="_images/hex_10_0.png" src="_images/hex_10_0.png"/>
-
+<img alt="_images/hex_10_0.svg" src="_images/hex_10_0.svg"/>
 
 <h2 id="finding-the-hexagon-address-for-a-cartesian-coordinate">Finding the hexagon address for a cartesian coordinate<a class="headerlink" href="#finding-the-hexagon-address-for-a-cartesian-coordinate" title="Permalink to this headline">¶</a></h2>
 <p>The function <code class="docutils literal notranslate"><span class="pre">axial_to_world</span></code> finds the “origin” coordinates of a
@@ -418,8 +391,7 @@ the address of this hexagon.</p>
 <span class="kc">None</span>
 </pre></div>
 </div>
-<img alt="_images/hex_14_0.png" src="_images/hex_14_0.png"/>
-<p>The intersection of the pink square and blue hexagon is already
+<img alt="_images/hex_14_0.svg" src="_images/hex_14_0.svg"/><p>The intersection of the pink square and blue hexagon is already
 correctly identified by the inverse. The four corners of the square need
 to be mapped to adjacent hexagons instead.</p>
 <p>Fortunately, we can use a property of the axial address already
@@ -478,8 +450,7 @@ hexagon grid to confirm that it works.</p>
 <span class="n">hex_grid_subplot</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
-<img alt="_images/hex_18_0.png" src="_images/hex_18_0.png"/>
-
+<img alt="_images/hex_18_0.svg" src="_images/hex_18_0.svg"/>
 
 <h2 id="references">References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <p>There are comprehensive details on hexagonal grids here:
@@ -523,7 +494,7 @@ hexagon grid to confirm that it works.</p>
               
           </div>
             Created using
-            <a href="http://www.sphinx-doc.org/">Sphinx</a> 3.0.2.
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 3.0.3.
              and
             <a href="https://github.com/bashtage/sphinx-material/">Material for
               Sphinx</a>

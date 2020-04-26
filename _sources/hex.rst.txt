@@ -55,7 +55,7 @@ hexagon in the next column is 1. The horizontal space (:math:`w`) is 1.
 
 
 
-.. image:: hex_files/hex_4_0.png
+.. image:: hex_files/hex_4_0.svg
 
 
 Colouring the hexagons
@@ -137,7 +137,7 @@ and “random” colour scheme defined above.
 
 
 
-.. image:: hex_files/hex_10_0.png
+.. image:: hex_files/hex_10_0.svg
 
 
 Finding the hexagon address for a cartesian coordinate
@@ -192,7 +192,7 @@ the address of this hexagon.
 
 
 
-.. image:: hex_files/hex_14_0.png
+.. image:: hex_files/hex_14_0.svg
 
 
 The intersection of the pink square and blue hexagon is already
@@ -265,7 +265,7 @@ hexagon grid to confirm that it works.
 
 
 
-.. image:: hex_files/hex_18_0.png
+.. image:: hex_files/hex_18_0.svg
 
 
 References
