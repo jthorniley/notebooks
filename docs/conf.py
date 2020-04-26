@@ -67,22 +67,23 @@ html_theme_options = {
     'nav_title': "James's Notebooks",
 
     # Set you GA account ID to enable tracking
-    #'google_analytics_account': 'UA-XXXXX',
+    'google_analytics_account': 'UA-164593913-1',
 
     # Specify a base_url used to generate sitemap.xml. If not
     # specified, then no sitemap will be built.
-    #'base_url': 'https://project.github.io/project',
+    'base_url': 'https://jthorniley.github.io/notebooks',
 
     # Set the color and the accent color
+    'theme_color': '#FB8C00',
     'color_primary': 'orange',
     'color_accent': 'light-orange',
 
     # Set the repo location to get a badge with stats
-    #'repo_url': 'https://github.com/project/project/',
-    #'repo_name': 'Project',
+    # 'repo_url': 'https://github.com/jthorniley/notebooks/',
+    # 'repo_name': "James's Notebooks",
 
     # Visible levels of the global TOC; -1 means unlimited
-    'globaltoc_depth': -1,
+    'globaltoc_depth': 1,
     # If False, expand all TOC entries
     'globaltoc_collapse': False,
     # If True, show hidden TOC entries

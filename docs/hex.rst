@@ -1,5 +1,13 @@
-Hexagon grid conversions
-========================
+Hexagonal grids - coordinates and addresses
+===========================================
+
+This notebook goes through creating an addressing system for a hexagonal
+grid, so that each hexagon can be referred to, and how to convert that
+to an from a rendering coordinate system, so that a game grid could be
+rendered, and user clicks somewhere on the grid can be converted back.
+
+Definitions
+-----------
 
 Define a tessellating hexagonal grid as a set of hexagons
 :math:`\mathcal{H}` which covers the cartesian plane
@@ -55,7 +63,7 @@ hexagon in the next column is 1. The horizontal space (:math:`w`) is 1.
 
 
 
-.. image:: hex_files/hex_4_0.svg
+.. image:: hex_files/hex_5_0.svg
 
 
 Colouring the hexagons
@@ -137,7 +145,7 @@ and “random” colour scheme defined above.
 
 
 
-.. image:: hex_files/hex_10_0.svg
+.. image:: hex_files/hex_11_0.svg
 
 
 Finding the hexagon address for a cartesian coordinate
@@ -192,7 +200,7 @@ the address of this hexagon.
 
 
 
-.. image:: hex_files/hex_14_0.svg
+.. image:: hex_files/hex_15_0.svg
 
 
 The intersection of the pink square and blue hexagon is already
@@ -265,11 +273,15 @@ hexagon grid to confirm that it works.
 
 
 
-.. image:: hex_files/hex_18_0.svg
+.. image:: hex_files/hex_19_0.svg
 
 
 References
 ----------
 
-There are comprehensive details on hexagonal grids here:
-https://www.redblobgames.com/grids/hexagons/
+`Red Blob Games hexagon
+page <https://www.redblobgames.com/grids/hexagons/>`__
+
+`Jupyter notebook source of this
+page <https://github.com/jthorniley/notebooks/blob/master/Hex%20Coordinates.ipynb>`__
+
