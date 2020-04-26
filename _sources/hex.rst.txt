@@ -143,6 +143,43 @@ To see how this works, we iterate over a rectangular set of hexagon
 addresses, and draw a hexagon on the cartesian plane using the geometry
 and “random” colour scheme defined above.
 
+.. code:: ipython3
+
+    from matplotlib import colors
+    def plot_hex(ax, i, j):
+        # Find the origin coordinates for the current hex
+        x, y = axial_to_world(i, j)
+        # Get the "random" color for it
+        color = color_for_hex(i, j)
+        # Offset the hex geometry according to the origin
+        points = hex_points()+np.array([x,y])
+        # Plot the hex
+        ax.fill(*points.transpose(), color=color)
+    
+        # Add a text annotation so we can see the hex address
+        # Naive algorithm to pick a contrasty text color
+        text_color = colors.rgb_to_hsv(color)
+        text_color[1] = 0.5
+        text_color[2] = np.round(1.2-text_color[2])
+        text_color[0] = 0.6 if text_color[2] < 0.5 else 0.2
+            
+        text_color = colors.hsv_to_rgb(text_color)
+        ax.annotate(f'{i},{j}',
+                    (x+0.5, y+1), 
+                    horizontalalignment='center', 
+                    verticalalignment='center', 
+                    color=text_color)
+        
+    def hex_grid_subplot(axes):
+        for i in range(0, 7):
+            for j in range(0, 7):
+                j = j + i//2
+                plot_hex(axes, i, j)
+        axes.set_title('Address -> Hexagon')
+    
+    fig = plt.figure(figsize=(8,8))
+    hex_grid_subplot(plt.subplot())
+
 
 
 .. image:: hex_files/hex_11_0.svg

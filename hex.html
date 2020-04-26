@@ -369,6 +369,42 @@ hexagon based on its address with the following function.</p>
 <p>To see how this works, we iterate over a rectangular set of hexagon
 addresses, and draw a hexagon on the cartesian plane using the geometry
 and “random” colour scheme defined above.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colors</span>
+<span class="k">def</span> <span class="nf">plot_hex</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="c1"># Find the origin coordinates for the current hex</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">axial_to_world</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    <span class="c1"># Get the "random" color for it</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="n">color_for_hex</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    <span class="c1"># Offset the hex geometry according to the origin</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">hex_points</span><span class="p">()</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">])</span>
+    <span class="c1"># Plot the hex</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="o">*</span><span class="n">points</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+
+    <span class="c1"># Add a text annotation so we can see the hex address</span>
+    <span class="c1"># Naive algorithm to pick a contrasty text color</span>
+    <span class="n">text_color</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">rgb_to_hsv</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">text_color</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">text_color</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mf">1.2</span><span class="o">-</span><span class="n">text_color</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">text_color</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.6</span> <span class="k">if</span> <span class="n">text_color</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.5</span> <span class="k">else</span> <span class="mf">0.2</span>
+
+    <span class="n">text_color</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">hsv_to_rgb</span><span class="p">(</span><span class="n">text_color</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
+                <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span>
+                <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span>
+                <span class="n">color</span><span class="o">=</span><span class="n">text_color</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">hex_grid_subplot</span><span class="p">(</span><span class="n">axes</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="n">i</span><span class="o">//</span><span class="mi">2</span>
+            <span class="n">plot_hex</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Address -&gt; Hexagon'</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">hex_grid_subplot</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">())</span>
+</pre></div>
+</div>
 <img alt="_images/hex_11_0.svg" src="_images/hex_11_0.svg"/>
 
 <h2 id="finding-the-hexagon-address-for-a-cartesian-coordinate">Finding the hexagon address for a cartesian coordinate<a class="headerlink" href="#finding-the-hexagon-address-for-a-cartesian-coordinate" title="Permalink to this headline">¶</a></h2>
