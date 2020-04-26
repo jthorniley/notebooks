@@ -16,7 +16,6 @@ import sphinx_material
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-
 # -- Project information -----------------------------------------------------
 
 project = "James's Notebooks"
@@ -27,7 +26,6 @@ author = 'James Thorniley'
 # The full version, including alpha/beta/rc tags
 release = ''
 
-
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
@@ -35,6 +33,7 @@ release = ''
 # ones.
 extensions = [
     "sphinx.ext.mathjax",
+    "sphinx.ext.githubpages",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -45,7 +44,6 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
-
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -53,7 +51,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 #
 html_show_sourcelink = False
 html_sidebars = {
-    "**": ["logo-text.html", "globaltoc.html", "localtoc.html", "searchbox.html"]
+    "**":
+    ["logo-text.html", "globaltoc.html", "localtoc.html", "searchbox.html"]
 }
 
 extensions.append("sphinx_material")
