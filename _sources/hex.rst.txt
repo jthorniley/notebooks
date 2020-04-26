@@ -37,9 +37,24 @@ small whole numbers: a small section of the tessellation is shown below
 (labelled :math:`h`) is 2, and the vertical space relative to the
 hexagon in the next column is 1. The horizontal space (:math:`w`) is 1.
 
+.. code:: ipython3
+
+    import numpy as np
+    
+    def hex_points():
+        return np.array([
+            [1.25, 1.],
+            [0.75, 2.],
+            [0.25, 2.],
+            [-0.25, 1.],
+            [0.25, 0.],
+            [0.75, 0.],
+            [1.25, 1]
+        ])
 
 
-.. image:: hex_files/hex_3_0.svg
+
+.. image:: hex_files/hex_4_0.svg
 
 
 Colouring the hexagons
@@ -111,7 +126,7 @@ to fill them in:
 
 
 
-.. image:: hex_files/hex_9_0.svg
+.. image:: hex_files/hex_10_0.svg
 
 
 Finding the hexagon address for a cartesian coordinate
@@ -174,5 +189,5 @@ are real-valued.
 
 
 
-.. image:: hex_files/hex_13_0.svg
+.. image:: hex_files/hex_14_0.svg
 

@@ -287,7 +287,21 @@ small whole numbers: a small section of the tessellation is shown below
 - the vertical space between adjacent hexagons in the same “column”
 (labelled <span class="math notranslate nohighlight">\(h\)</span>) is 2, and the vertical space relative to the
 hexagon in the next column is 1. The horizontal space (<span class="math notranslate nohighlight">\(w\)</span>) is 1.</p>
-<img alt="_images/hex_3_0.svg" src="_images/hex_3_0.svg"/>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">hex_points</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">[</span><span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.25</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">])</span>
+</pre></div>
+</div>
+<img alt="_images/hex_4_0.svg" src="_images/hex_4_0.svg"/>
 
 <h2 id="colouring-the-hexagons">Colouring the hexagons<a class="headerlink" href="#colouring-the-hexagons" title="Permalink to this headline">¶</a></h2>
 <p>As noted at the start, each hexagon has an address <span class="math notranslate nohighlight">\(\{i, j\}\)</span>. In
@@ -344,7 +358,7 @@ coordinate is simply <span class="math notranslate nohighlight">\(i\)</span>.</p
 </div>
 <p>Plotting our hexagon geometry on this grid, and using the random colours
 to fill them in:</p>
-<img alt="_images/hex_9_0.svg" src="_images/hex_9_0.svg"/>
+<img alt="_images/hex_10_0.svg" src="_images/hex_10_0.svg"/>
 
 <h2 id="finding-the-hexagon-address-for-a-cartesian-coordinate">Finding the hexagon address for a cartesian coordinate<a class="headerlink" href="#finding-the-hexagon-address-for-a-cartesian-coordinate" title="Permalink to this headline">¶</a></h2>
 <p>The function <code class="docutils literal notranslate"><span class="pre">axial_to_world</span></code> finds the ‘origin’ coordinates of a
@@ -393,7 +407,7 @@ are real-valued.</p>
         <span class="k">return</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
 </pre></div>
 </div>
-<img alt="_images/hex_13_0.svg" src="_images/hex_13_0.svg"/>
+<img alt="_images/hex_14_0.svg" src="_images/hex_14_0.svg"/>
 
 
 
