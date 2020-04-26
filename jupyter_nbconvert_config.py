@@ -469,7 +469,7 @@
 #  returned in the 'resources' dictionary.
 
 ##
-#c.ExtractOutputPreprocessor.extract_output_types = {'image/jpeg', 'image/png', 'application/pdf', 'image/svg+xml'}
+c.ExtractOutputPreprocessor.extract_output_types = {'image/jpeg', 'image/png', 'application/pdf', 'image/svg+xml'}
 
 ##
 #c.ExtractOutputPreprocessor.output_filename_template = '{unique_key}_{cell_index}_{index}{extension}'
